@@ -7,14 +7,14 @@
   <meta name="keywords" content="líderes mundiales, política internacional, geopolítica, análisis político">
   <meta name="monetag" content="10548412">
   <title>Líderes Mundiales | Análisis Político Global</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="./css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <!-- MONETAG — Registro Service Worker Push -->
+  <!-- MONETAG — Push Notifications -->
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js')
+      navigator.serviceWorker.register('./sw.js')
         .then(reg => console.log('Monetag SW activo:', reg.scope))
         .catch(err => console.log('SW error:', err));
     }
@@ -97,4 +97,96 @@
         <h2>Regiones del mundo</h2>
       </div>
       <div class="region-tabs">
-        <button class="tab active"
+        <button class="tab active" onclick="filtrar('todos', this)">🌐 Todos</button>
+        <button class="tab" onclick="filtrar('america', this)">🌎 América</button>
+        <button class="tab" onclick="filtrar('europa', this)">🌍 Europa</button>
+        <button class="tab" onclick="filtrar('asia', this)">🌏 Asia</button>
+        <button class="tab" onclick="filtrar('africa', this)">Africa</button>
+        <button class="tab" onclick="filtrar('oceania', this)">🌊 Oceanía</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRID LÍDERES -->
+  <section id="lideres" class="lideres-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Perfiles de poder</div>
+        <h2>Líderes destacados</h2>
+      </div>
+      <div class="grid" id="grid-lideres"></div>
+    </div>
+  </section>
+
+  <!-- MONETAG — Banner medio -->
+  <div class="ad-wrap ad-mid">
+    <div class="ad-label">Publicidad</div>
+    <script>
+      (function(d,z,s){
+        s.src='https://'+d+'/400/'+z;
+        try{ document.head.appendChild(s) }
+        catch(e){ document.body.appendChild(s) }
+      })('5gvci.com', 10548412, document.createElement('script'));
+    </script>
+  </div>
+
+  <!-- ARTÍCULOS -->
+  <section id="analisis" class="analisis-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Última hora</div>
+        <h2>Análisis recientes</h2>
+      </div>
+      <div class="articulos-grid" id="articulos"></div>
+    </div>
+  </section>
+
+  <!-- MONETAG — Banner inferior -->
+  <div class="ad-wrap ad-mid">
+    <div class="ad-label">Publicidad</div>
+    <script>
+      (function(d,z,s){
+        s.src='https://'+d+'/401/'+z;
+        try{ document.head.appendChild(s) }
+        catch(e){ document.body.appendChild(s) }
+      })('5gvci.com', 10548412, document.createElement('script'));
+    </script>
+  </div>
+
+  <!-- NEWSLETTER -->
+  <section id="newsletter" class="newsletter">
+    <div class="newsletter-inner">
+      <div class="newsletter-text">
+        <h2>El mundo no para.<br>Tú tampoco deberías.</h2>
+        <p>Análisis semanal de geopolítica directamente en tu correo. Sin ruido, solo lo que importa.</p>
+      </div>
+      <div class="newsletter-form">
+        <input type="email" id="email" placeholder="tu@correo.com">
+        <button onclick="suscribir()">Suscribirme →</button>
+        <p id="msg-suscripcion"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-text">Líderes<strong>Mundiales</strong></span>
+        <p>Análisis político independiente desde 2025.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#">Privacidad</a>
+        <a href="#">Contacto</a>
+        <a href="#">Sobre nosotros</a>
+        <a href="#">Mapa del sitio</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 LíderesMundiales.net — Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>
