@@ -8,7 +8,7 @@ async function buscarLider(consulta) {
   resultado.innerHTML = '<p class="ai-cargando">🔍 Buscando con IA...</p>';
 
   try {
-    const response = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?"AQ.Ab8RN6KbvuUBgWRtH49OwCdL-p15OGGPtPZKKz5-sJZJNcW6Fg"{
+    const response = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AQ.Ab8RN6KbvuUBgWRtH49OwCdL-p15OGGPtPZKKz5-sJZJNcW6Fg",{
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
