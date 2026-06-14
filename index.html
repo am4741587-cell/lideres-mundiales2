@@ -3,42 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Análisis de líderes mundiales y sus políticas económicas, sociales y exteriores.">
-  <meta name="keywords" content="líderes mundiales, política internacional, geopolítica, análisis político">
   <meta name="monetag" content="2fa8c36a3fa4c0d6d4cc0dc1641f08b7">
   <title>Líderes Mundiales | Análisis Político Global</title>
   <link rel="stylesheet" href="/css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
-  <!-- MONETAG — Push Notifications -->
   <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js')
-        .then(reg => console.log('Monetag SW activo:', reg.scope))
-        .catch(err => console.log('SW error:', err));
+    if('serviceWorker' in navigator){
+      navigator.serviceWorker.register('/sw.js')
+        .then(r=>console.log('SW ok'))
+        .catch(e=>console.log('SW error',e));
     }
   </script>
-
-  <!-- MONETAG — Popunder -->
-  <script>
-    (function(d,z,s){
-      s.src='https://'+d+'/400/'+z;
-      try{ document.head.appendChild(s) }
-      catch(e){ document.body.appendChild(s) }
-    })('3nbf4.com', 2fa8c36a3fa4c0d6d4cc0dc1641f08b7, document.createElement('script'));
-  </script>
-
-  <!-- MONETAG — Script principal -->
-  <script src="https://cdn.cuterra.com/tag.min.js"
-    data-zone="2fa8c36a3fa4c0d6d4cc0dc1641f08b7"
-    async>
-  </script>
-<script src="https://quge5.com/88/tag.min.js" data-zone="249451" async data-cfasync="false"></script>
+  <script src="https://quge5.com/88/tag.min.js" data-zone="249451" async data-cfasync="false"></script>
 </head>
 <body>
-
-  <!-- HEADER -->
   <header>
     <div class="logo">
       <span class="logo-icon">🌍</span>
@@ -48,19 +26,18 @@
       <a href="#lideres">Líderes</a>
       <a href="#regiones">Regiones</a>
       <a href="#analisis">Análisis</a>
+      <a href="#buscador">Buscar IA</a>
       <a href="#newsletter">Newsletter</a>
     </nav>
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
   </header>
-
   <nav class="mobile-nav" id="mobileNav">
     <a href="#lideres" onclick="toggleMenu()">Líderes</a>
     <a href="#regiones" onclick="toggleMenu()">Regiones</a>
     <a href="#analisis" onclick="toggleMenu()">Análisis</a>
+    <a href="#buscador" onclick="toggleMenu()">Buscar IA</a>
     <a href="#newsletter" onclick="toggleMenu()">Newsletter</a>
   </nav>
-
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
       <div class="hero-eyebrow">Geopolítica · Poder · Decisiones</div>
@@ -68,7 +45,7 @@
       <p>Análisis objetivo de los líderes más influyentes del planeta, sus políticas y su impacto global.</p>
       <div class="hero-ctas">
         <a href="#lideres" class="btn-primary">Ver líderes</a>
-        <a href="#analisis" class="btn-secondary">Leer análisis</a>
+        <a href="#buscador" class="btn-secondary">Buscar con IA</a>
       </div>
     </div>
     <div class="hero-stats">
@@ -77,20 +54,6 @@
       <div class="stat"><span class="stat-num">7</span><span class="stat-label">regiones del mundo</span></div>
     </div>
   </section>
-
-  <!-- MONETAG — Banner superior -->
-  <div class="ad-wrap">
-    <div class="ad-label">Publicidad</div>
-    <script>
-      (function(d,z,s){
-        s.src='https://'+d+'/401/'+z;
-        try{ document.head.appendChild(s) }
-        catch(e){ document.body.appendChild(s) }
-      })('3nbf4.com', 2fa8c36a3fa4c0d6d4cc0dc1641f08b7, document.createElement('script'));
-    </script>
-  </div>
-
-  <!-- REGIONES -->
   <section id="regiones" class="regiones">
     <div class="container">
       <div class="section-header">
@@ -98,17 +61,15 @@
         <h2>Regiones del mundo</h2>
       </div>
       <div class="region-tabs">
-        <button class="tab active" onclick="filtrar('todos', this)">🌐 Todos</button>
-        <button class="tab" onclick="filtrar('america', this)">🌎 América</button>
-        <button class="tab" onclick="filtrar('europa', this)">🌍 Europa</button>
-        <button class="tab" onclick="filtrar('asia', this)">🌏 Asia</button>
-        <button class="tab" onclick="filtrar('africa', this)">Africa</button>
-        <button class="tab" onclick="filtrar('oceania', this)">🌊 Oceanía</button>
+        <button class="tab active" onclick="filtrar('todos',this)">🌐 Todos</button>
+        <button class="tab" onclick="filtrar('america',this)">🌎 América</button>
+        <button class="tab" onclick="filtrar('europa',this)">🌍 Europa</button>
+        <button class="tab" onclick="filtrar('asia',this)">🌏 Asia</button>
+        <button class="tab" onclick="filtrar('africa',this)">Africa</button>
+        <button class="tab" onclick="filtrar('oceania',this)">🌊 Oceanía</button>
       </div>
     </div>
   </section>
-
-  <!-- GRID LÍDERES -->
   <section id="lideres" class="lideres-section">
     <div class="container">
       <div class="section-header">
@@ -118,20 +79,6 @@
       <div class="grid" id="grid-lideres"></div>
     </div>
   </section>
-
-  <!-- MONETAG — Banner medio -->
-  <div class="ad-wrap ad-mid">
-    <div class="ad-label">Publicidad</div>
-    <script>
-      (function(d,z,s){
-        s.src='https://'+d+'/400/'+z;
-        try{ document.head.appendChild(s) }
-        catch(e){ document.body.appendChild(s) }
-      })('3nbf4.com', 2fa8c36a3fa4c0d6d4cc0dc1641f08b7, document.createElement('script'));
-    </script>
-  </div>
-
-  <!-- ARTÍCULOS -->
   <section id="analisis" class="analisis-section">
     <div class="container">
       <div class="section-header">
@@ -141,25 +88,25 @@
       <div class="articulos-grid" id="articulos"></div>
     </div>
   </section>
-
-  <!-- MONETAG — Banner inferior -->
-  <div class="ad-wrap ad-mid">
-    <div class="ad-label">Publicidad</div>
-    <script>
-      (function(d,z,s){
-        s.src='https://'+d+'/401/'+z;
-        try{ document.head.appendChild(s) }
-        catch(e){ document.body.appendChild(s) }
-      })('3nbf4.com', 2fa8c36a3fa4c0d6d4cc0dc1641f08b7, document.createElement('script'));
-    </script>
-  </div>
-
-  <!-- NEWSLETTER -->
+  <section id="buscador" class="ai-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Inteligencia Artificial</div>
+        <h2>Buscar cualquier líder</h2>
+      </div>
+      <p style="color:#aaa;margin-bottom:24px">Escribe el nombre de cualquier líder político del mundo y la IA generará su perfil completo.</p>
+      <div class="ai-buscador">
+        <input type="text" id="ai-input" placeholder="Ej: Pedro Sanchez, Lula, Trudeau...">
+        <button onclick="buscarLider(document.getElementById('ai-input').value)">Buscar con IA →</button>
+      </div>
+      <div id="ai-resultado"></div>
+    </div>
+  </section>
   <section id="newsletter" class="newsletter">
     <div class="newsletter-inner">
       <div class="newsletter-text">
         <h2>El mundo no para.<br>Tú tampoco deberías.</h2>
-        <p>Análisis semanal de geopolítica directamente en tu correo. Sin ruido, solo lo que importa.</p>
+        <p>Análisis semanal de geopolítica directamente en tu correo.</p>
       </div>
       <div class="newsletter-form">
         <input type="email" id="email" placeholder="tu@correo.com">
@@ -168,8 +115,6 @@
       </div>
     </div>
   </section>
-
-  <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
@@ -180,14 +125,13 @@
         <a href="#">Privacidad</a>
         <a href="#">Contacto</a>
         <a href="#">Sobre nosotros</a>
-        <a href="#">Mapa del sitio</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 LíderesMundiales.net — Todos los derechos reservados</p>
+      <p>© 2025 LíderesMundiales — Todos los derechos reservados</p>
     </div>
   </footer>
-
   <script src="/js/app.js"></script>
+  <script src="/js/ai.js"></script>
 </body>
 </html>
