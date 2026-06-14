@@ -1,0 +1,71 @@
+async function buscarLider(consulta) {
+  if (!consulta.trim()) {
+    document.getElementById('ai-resultado').innerHTML = '<p style="color:#e74c3c">Escribe un nombre o país.</p>';
+    return;
+  }
+
+  const resultado = document.getElementById('ai-resultado');
+  resultado.innerHTML = '<p class="ai-cargando">🔍 Buscando con IA...</p>';
+
+  try {
+    const response = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key='GOOGLE_API_KEY{
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        contents: [{
+          parts: [{
+            text: `Busca información sobre este líder político: "${consulta}".
+            Responde SOLO en formato JSON sin explicaciones ni markdown:
+            {
+              "nombre": "nombre completo",
+              "pais": "país",
+              "cargo": "cargo actual",
+              "bandera": "emoji bandera del país",
+              "region": "america o europa o asia o africa o oceania",
+              "resumen": "resumen de 2 líneas sobre su gobierno y políticas",
+              "politicas": ["política 1", "política 2", "política 3"]
+            }`
+          }]
+        }]
+      })
+    });
+
+    const data = await response.json();
+    const texto = data.candidates[0].content.parts[0].text;
+    const clean = texto.replace(/```json|```/g, '').trim();
+    const lider = JSON.parse(clean);
+
+    resultado.innerHTML = `
+      <div class="card ai-card">
+        <div class="card-top">
+          <div class="card-bandera">${lider.bandera}</div>
+          <div class="card-nombre">
+            <h3>${lider.nombre}</h3>
+            <div class="cargo">${lider.cargo} — ${lider.pais}</div>
+          </div>
+        </div>
+        <div class="card-body">${lider.resumen}</div>
+        <div class="card-politicas">
+          ${lider.politicas.map(p=>`<span class="politica-tag">${p}</span>`).join('')}
+        </div>
+        <div style="padding:12px 20px">
+          <button onclick='agregarLider(${JSON.stringify(lider)})'
+            style="background:#C9A84C;border:none;padding:8px 16px;cursor:pointer;border-radius:2px;font-weight:700;color:#000">
+            + Agregar al sitio
+          </button>
+        </div>
+      </div>`;
+
+  } catch(e) {
+    resultado.innerHTML = '<p style="color:#e74c3c">Error al buscar. Verifica tu API key.</p>';
+    console.error(e);
+  }
+}
+
+function agregarLider(lider) {
+  lideres.push(lider);
+  renderLideres(lideres);
+  document.getElementById('ai-resultado').innerHTML =
+    '<p style="color:#4caf50;padding:12px 0">✅ Líder agregado exitosamente!</p>';
+  document.getElementById('lideres').scrollIntoView({behavior:'smooth'});
+}
