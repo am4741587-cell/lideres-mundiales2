@@ -4,21 +4,26 @@ async function buscarLider(consulta) {
     return;
   }
   const resultado = document.getElementById('ai-resultado');
-  resultado.innerHTML = '<p class="ai-cargando">🔍 Buscando con IA...</p>'
-  const KEY = API_KEY";
-    const response = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=" + KEY, {
+  resultado.innerHTML = '<p class="ai-cargando">🔍 Buscando con IA...</p>';
+  try {
+    const KEY = "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";
+    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + KEY
+      },
       body: JSON.stringify({
-        contents: [{
-          parts: [{
-            text: `Información sobre el líder político: "${consulta}". Responde SOLO en JSON sin markdown: {"nombre":"nombre completo","pais":"país","cargo":"cargo actual","bandera":"emoji bandera","region":"america o europa o asia o africa o oceania","resumen":"2 líneas sobre su gobierno","politicas":["política 1","política 2","política 3"]}`
-          }]
-        }]
+        model: "llama-3.3-70b-versatile",
+        messages: [{
+          role: "user",
+          content: `Información sobre el líder político: "${consulta}". Responde SOLO en JSON sin markdown ni texto adicional: {"nombre":"nombre completo","pais":"país","cargo":"cargo actual","bandera":"emoji bandera","region":"america o europa o asia o africa o oceania","resumen":"2 líneas sobre su gobierno","politicas":["política 1","política 2","política 3"]}`
+        }],
+        temperature: 0.3
       })
     });
     const data = await response.json();
-    const texto = data.candidates[0].content.parts[0].text;
+    const texto = data.choices[0].message.content;
     const clean = texto.replace(/```json|```/g,'').trim();
     const lider = JSON.parse(clean);
     resultado.innerHTML = `
