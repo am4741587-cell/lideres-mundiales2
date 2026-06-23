@@ -6,7 +6,7 @@ async function buscarLider(consulta) {
   const resultado = document.getElementById('ai-resultado');
   resultado.innerHTML = '<p class="ai-cargando">🔍 Buscando con IA...</p>';
   try {
-    const KEY = "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";
+    const KEY = "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";
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
       headers: {
